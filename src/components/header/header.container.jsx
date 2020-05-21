@@ -11,12 +11,24 @@ const GET_CART_HIDDEN = gql`
     }
 `;
 
-const HeaderContainer = () => (
-    <Query query={ GET_CART_HIDDEN }>
+const GET_CURRENT_USER = gql`
     {
-        ({ data: { cartHidden } }) => <Header hidden={ cartHidden }/>
+        currentUser @client
+    }
+`;
+
+const HeaderContainer = () => (
+    <Query query={ GET_CURRENT_USER }>
+    {
+        ({ data: { currentUser } }) => 
+        <Query query={ GET_CART_HIDDEN }>
+            {
+                ({ data: { cartHidden } }) => <Header hidden={ cartHidden } currentUser={ currentUser } />
+            }
+        </Query>
     }
     </Query>
+    
 );
 
 export default HeaderContainer;

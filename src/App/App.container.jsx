@@ -24,10 +24,8 @@ const AppContainer = () => (
         ({ data: {currentUser} }) => (
             <Mutation mutation={ SET_CURRENT_USER }>
                 {
-                    setCurrentUser => {
-                        console.log(currentUser)
-                        return <App  currentUser={ currentUser } setCurrentUser={ user => setCurrentUser({ variables: { user } }) } />
-                    }
+                    setCurrentUser => 
+                    <App  currentUser={ currentUser } setCurrentUser={ user => setCurrentUser({ variables: { user } }) } />
                 }
             </Mutation>
         )
